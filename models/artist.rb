@@ -43,17 +43,20 @@ attr_reader :id
   end
 
   def delete()
-    sql = "DELETE FROM artist WHERE id = $1 "
+    delete_album_by_id(@id)
+    sql = "DELETE FROM artist WHERE id = $1;"
     values = [@id]
     SqlRunner.run(sql, values)
   end
 
   def self.find_artist(artist_name)
-    sql = "SELECT * FROM artists WHERE name = $1"
+    sql = "SELECT * FROM artists WHERE name = $1;"
     values = [artist_name]
     result = SqlRunner.run(sql, values)[0]
     return Artist.new(result)
   end
+
+
 
 
 

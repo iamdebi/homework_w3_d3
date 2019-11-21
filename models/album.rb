@@ -57,4 +57,10 @@ attr_reader :id, :artist_id
     return Album.new(result)
   end
 
+  def self.delete_album_by_id(id)
+    sql = "DElETE FROM albums WHERE id = $1 "
+    values = [id]
+    SqlRunner.run(sql, values)
+  end
+
 end
